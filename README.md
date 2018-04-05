@@ -23,7 +23,7 @@ Note that some sets of values necessary for this application, such as Azure Subs
 
 ## In the Repo
 - <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/Services">Microservices</a> 
-- <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/ClusterSetup">Service Fabric Cluster Setup</a> 
+- <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/ClusterSetup/ClusterSetup/Development">Service Fabric Cluster Setup</a> 
 - <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/Clients">Xamarin Clients</a> 
 - <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/Test">Test</a> 
 
