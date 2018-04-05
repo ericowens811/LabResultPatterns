@@ -2,7 +2,7 @@
 
 The Lab Results Pattern manager (*LRP* pronounced *Lerp*) is a new application that allows medical clinicians to capture and maintain a library of lab result patterns. It is one component in a larger suite of <a href="https://en.wikipedia.org/wiki/Clinical_pathway">Clinical Pathway Management</a> automation software. 
 
-The version of *LRP* in this public repo is a complete vertical slice of the application, including
+The version of *LRP* in this public repo is the first vertical slice of the application, including
 
 - EF-Core code-first database
 - ASP.Net Core Web API 2.0 rest-based microservices
@@ -18,7 +18,8 @@ The version of *LRP* in this public repo is a complete vertical slice of the app
 
 A narrow but complete slice plays an important role in jump-starting an agile team's initial work on a new application.
 
-Note that the application in this public repo is scrubbed of its secrets such as Db connection strings. 
+Note that some sets of values necessary for this application, such as Azure keys and connection strings, need to be kept secret and are not commited to source control.
+
 
 ## In the Repo
 - <a href="https://github.com/triatta/cloud/tree/pullback19/Services">Microservices</a> 
