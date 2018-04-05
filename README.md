@@ -261,9 +261,9 @@ In the *LRP* client architecture, there is a controller and view model for every
 
 For example, in the CollectionPageController show above, there is the ItemMvcBuilder. The CollectionPageController uses it to respond to a user selectiong a row to edit, or clicking Add(+) on the toolbar.  For those events, the handler will call the ItemMvcBuilder to wire a new item page MVC collaboration push the page onto the stack.  
 
-Behind the CollectionPageViewModel is the client PagingService implementation, shown here:
+Behind the CollectionPageViewModel is the client ReadPageService implementation, shown here:
 
-<img src="ReadmeResources/ClientServiceArch2.png" alt="ClientServiceArch" width="1000"/>
+<img src="ReadmeResources/ClientServiceArch2.png" alt="ClientServiceArch" width="600"/>
 
 ### Testing
 
