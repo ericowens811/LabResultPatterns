@@ -263,7 +263,7 @@ For example, in the CollectionPageController show above, there is the ItemMvcBui
 
 Behind the CollectionPageViewModel is the client ReadPageService implementation, shown here:
 
-<img src="ReadmeResources/ClientServiceArch2.png" alt="ClientServiceArch" width="600"/>
+<img src="ReadmeResources/ClientServiceArch2.png" alt="ClientServiceArch" width="450"/>
 
 ### Testing
 
