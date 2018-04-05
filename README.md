@@ -1,2 +1,0 @@
-# cloud
-triatta cloud services
