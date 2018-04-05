@@ -279,183 +279,80 @@ Constructor    | <a href="http://codinghelmet.com/?path=howto/constructor-tests"
 Interaction    | NUnit + Moq
 State          | NUnit
 
-#### Example: Unit testing the SaveService
-
-The *LRP* SaveService has a simple API: *SaveItemAsync(TItem item)*.  Here is an Activity Diagram of what it needs to accomplish:
-
-<img src="ReadmeResources/SaveActivity.png" alt="SaveActivity" width="800"/>
-
-To implement its activity, the SaveService has two collaborators:
-
-<img src="ReadmeResources/SaveServiceClass4.png" alt="SaveService" width="1000"/>
-
-Here is its constructor:
-
-```csharp
-public SaveService
-(
-    IRelType<TItem> relType,
-    IHttpWriteService httpWriteService,
-    IValidator validator
-)
-{
-    _relType = relType ?? throw new ArgumentNullException(nameof(relType));
-    _httpWriteService = httpWriteService ?? throw new ArgumentNullException(nameof(httpWriteService));
-    _validator = validator ?? throw new ArgumentNullException(nameof(validator));
-}
-```
-
 #### Constructor Unit Testing
 
-Unit testing this constructor with the utilities from *Coding Helmet* looks like this:
+Unit testing a constructor with the utilities from *Coding Helmet* looks like this:
 
 ```csharp
 [Test]
-[Category("ClientSaveService")]
+[Category("ReadPageServiceBuildUrl")]
 public void Constructor()
 {
-    var relType = new Mock<IRelType<Uom>>().Object;
-    var httpWriteService = new Mock<IHttpWriteService>().Object;
-    var validator = new Mock<IValidator>().Object;
-
-    ConstructorTests<SaveService<Uom>>
-        .For
-        (
-            typeof(IRelType<Uom>),
-            typeof(IHttpWriteService),
-            typeof(IValidator)
-        )
-        .Fail(new object[] { null, httpWriteService, validator }, typeof(ArgumentNullException), "Null relType.")
-        .Fail(new object[] { relType, null, validator }, typeof(ArgumentNullException), "Null httpWriteService.")
-        .Fail(new object[] { relType, httpWriteService, null}, typeof(ArgumentNullException), "Null validator.")
-        .Succeed(new object[] { relType, httpWriteService, validator }, "Constructor args valid.")
+    var urlBuilder = new Mock<IPageUrlBuilder<Uom>>().Object;
+    var next = new Mock<IReadPageService<Uom>>().Object;
+    ConstructorTests<ReadPageServiceBuildUrl<Uom>>
+        .For(typeof(IPageUrlBuilder<Uom>), typeof(IReadPageService<Uom>))
+        .Fail(new object[] { null, next }, typeof(ArgumentNullException), "Null urlBuilder")
+        .Fail(new object[] { urlBuilder, null }, typeof(ArgumentNullException), "Null next")
+        .Succeed(new object[] { urlBuilder, next }, "Constructor args valid.")
         .Assert();
 }
 ```
 
 #### Interaction Unit Testing
 
-The SaveService's activity is deterministicallly sequential and thus suitable for Moq-based interaction testing:
+The ReadPageServiceBuildUrl's activity uses Moq-based interaction testing:
 
-For instance, here is a test for the first step in the Activity:
-
-```csharp
-[Test]
-[Category("ClientSaveService")]
-public void SaveItemAsync_Null()
-{
-    SaveService<Uom> service = new ServiceTestBuilder<Uom>()
-        .SetConstructor_RelType(new RelType<Uom>(RelTypes.uomr, RelTypes.uomw))
-        .Validator_NotCalled()
-        .HttpWriteService_NotCalled();
-
-    Assert.ThrowsAsync<ArgumentNullException>
-    (
-        async () => await service.SaveItemAsync(null)
-    );
-}
-```
-
-And here is the test for successful completion of the activity:
+For example:
 
 ```csharp
 [Test]
-[Category("ClientSaveService")]
-public async Task SaveItemAsync_Put()
+[Category("ReadPageServiceBuildUrl")]
+public async Task ReadPageAsync()
 {
-    var uom = new Uom().WithId(1001);
-    SaveService<Uom> service = new ServiceTestBuilder<Uom>()
-        .SetConstructor_RelType(new RelType<Uom>(RelTypes.uomr, RelTypes.uomw))
-        .Validator_Validate_Valid(uom)
-        .HttpWriteService_PutAsync_ReturnsStatusCode(uom, HttpStatusCode.NoContent);
-
-    await service.SaveItemAsync(uom);
+    var url = "qtb3.com/a/b";
+    var expectedData = new Mock<ICollectionPageData<Uom>>(MockBehavior.Strict).Object;
+    var urlBuilder = new Mock<IPageUrlBuilder<Uom>>();
+    urlBuilder.Setup(u => u.Build(null)).Returns(url);
+    var next = new Mock<IReadPageService<Uom>>(MockBehavior.Strict);
+    next.Setup(n => n.ReadPageAsync(url)).ReturnsAsync(expectedData);
+    var uut = new ReadPageServiceBuildUrl<Uom>(urlBuilder.Object, next.Object);
+    var actualData = await uut.ReadPageAsync(null);
+    Assert.AreEqual(expectedData, actualData);
 }
 ```
-
-As you can see, *LRP* Service tests use a ServiceTestBuilder<> that provides a fluent interface to specify the behavior of all the collaborators, making for readable and maintainable tests.
 
 #### State Unit Testing
 
-The SaveService collaborators provide examples of straightforward state testing.  For instance, here are tests for the Validator that the SaveService uses before sending an item to the service layer.
+The ReadPageService collaborators provide examples of straightforward state testing.  For instance, here is a portion of the test file for the PageUrlBuilder:
 
 ```csharp
-[Test]
-[Category("Validator")]
-public void NullArgument()
-{
-    var validator = new Validator();
-    Assert.Throws<ArgumentNullException>
-    (
-        () => validator.Validate(null, out _)
-    );
-}
+[[TestFixture]
+    public class PageUrlBuilderTests
+    {
+        public string Key;
+        public LinkTemplateLookup Lookup;
+        public int PageSize;
+        public int Skip = 0;
 
-[Test]
-[Category("Validator")]
-public void ValidReturnsTrue()
-{
-    var uom = new Uom(0, "TheUom", "AllOfIt");
-    Assert.IsTrue(new Validator().Validate(uom, out _));
-}
-
-[Test]
-[Category("Validator")]
-public void InvalidOneErrorInDictionary()
-{
-    var uom = new Uom(0, "", "AllOfIt");
-    Assert.IsFalse(new Validator().Validate(uom, out var errorDictionary));
-    Assert.AreEqual(1, errorDictionary.Count);
-}
-
-[Test]
-[Category("Validator")]
-public void InvalidTwoErrorsInDictionary()
-{
-    var uom = new Uom();
-    new Validator().Validate(uom, out var errorDictionary);
-    Assert.AreEqual(2, errorDictionary.Count);
-}
-
-[Test]
-[Category("Validator")]
-public void InvalidHasValueForName()
-{
-    var uom = new Uom(0, "", "AllOfIt");
-    new Validator().Validate(uom, out var errorDictionary);
-    errorDictionary.TryGetValue("Name", out var value);
-    Assert.NotNull(value);
-    Assert.AreEqual(1, value?.Count);
-    Assert.AreEqual("The Name field is required.", value?[0]);
-}
-
-[Test]
-[Category("Validator")]
-public void InvalidHasValueForDescription()
-{
-    var uom = new Uom(0, "TheUom", "");
-    new Validator().Validate(uom, out var errorDictionary);
-    errorDictionary.TryGetValue("Description", out var value);
-    Assert.NotNull(value);
-    Assert.AreEqual(1, value?.Count);
-    Assert.AreEqual("The Description field is required.", value?[0]);
-}
-
-[Test]
-[Category("Validator")]
-public void InvalidHasValueForNameAndDescription()
-{
-    var uom = new Uom(0, "", "");
-    new Validator().Validate(uom, out var errorDictionary);
-    errorDictionary.TryGetValue("Description", out var descriptionValue);
-    Assert.NotNull(descriptionValue);
-    Assert.AreEqual(1, descriptionValue?.Count);
-    Assert.AreEqual("The Description field is required.", descriptionValue?[0]);
-    errorDictionary.TryGetValue("Name", out var nameValue);
-    Assert.NotNull(nameValue);
-    Assert.AreEqual(1, nameValue?.Count);
-    Assert.AreEqual("The Name field is required.", nameValue?[0]);
-}
+        [SetUp]
+        public void Setup()
+        {
+            Key = "key";
+            Lookup = new LinkTemplateLookup() {["key"] = "http://qtb3.com/uom?searchText={filter}&skip={skip}&take={take}"};
+            PageSize = 20;
+        }
+		
+		//...
+		
+        [Test]
+        [Category("PageUrlBuilder")]
+        public void Build()
+        {
+            var uut = new PageUrlBuilder<Uom>(Key, Lookup, PageSize);
+            var url = uut.Build(null);
+            Assert.AreEqual($"http://qtb3.com/uom?searchText=&skip={Skip}&take={PageSize}", url);
+        }
 ```
 
 #### Integration Testing
