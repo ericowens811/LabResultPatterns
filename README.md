@@ -9,6 +9,7 @@ The version of *LRP* in this public repo is the first vertical slice of the appl
 - Azure integration
 	- *Service Fabric* cluster deployment for ASP.Net Web API
 	- *Active Directory B2C* authentication and authorization
+	- *Key Vault* certificate and secret key storage
 	- *Azure SQL* database
 	- *Application Insights* logging and performance monitoring
 	- *ARM* deployment from Powershell
@@ -16,15 +17,15 @@ The version of *LRP* in this public repo is the first vertical slice of the appl
 - Integration testing with in-memory Sqlite and AspNetCore <a href="https://docs.microsoft.com/en-us/aspnet/core/testing/integration-testing">TestHost</a> 
 - Unit testing with NUnit and Moq
 
-A narrow but complete slice plays an important role in jump-starting an agile team's initial work on a new application.
+This first slice is a work-in-progress and more will be added to this repo and its README in the coming weeks.
 
-Note that some sets of values necessary for this application, such as Azure keys and connection strings, need to be kept secret and are not commited to source control.
+Note that some sets of values necessary for this application, such as Azure Subscription Ids, need to be kept secret and are not commited to source control.  There is more discussion of secrets in the Security section.
 
 ## In the Repo
-- <a href="https://github.com/triatta/cloud/tree/pullback19/Services">Microservices</a> 
-- <a href="https://github.com/triatta/cloud/tree/pullback19/ClusterSetup/ClusterSetup">Service Fabric Cluster Setup</a> 
-- <a href="https://github.com/triatta/cloud/tree/pullback19/Clients">Xamarin Clients</a> 
-- <a href="https://github.com/triatta/cloud/tree/pullback19/Test">Test</a> 
+- <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/Services">Microservices</a> 
+- <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/ClusterSetup">Service Fabric Cluster Setup</a> 
+- <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/Clients">Xamarin Clients</a> 
+- <a href="https://github.com/ericowens811/LabResultPatterns/tree/publicbranch/Test">Test</a> 
 
 ## Discussion
 - [Introduction](#introduction)
@@ -229,7 +230,9 @@ In turn, each service hosts an ASP.Net Web API pipeline, which routes requests t
 The WebApi pipeline for both the Read and Write channels uses a Startup.cs designed to facilitate integration testing (discussed below).  In particular, integration tests deploy a TestStartup that inherits from the production Startup but overrides the Azure AD B2C token implementation in favor of a test-friendly JWT implementation that does not require user-interaction for login.
 
 ### Security
-The Service Fabric cluster that hosts *LRP* is accessed over SSL from outside the cluster and uses SSL within the cluster.  
+The Service Fabric cluster that hosts *LRP* is accessed over SSL from outside the cluster and uses SSL within the cluster.  The certificates are currently self-signed and are stored in Azure Key Vault.  In addition to the certificates, other application secrets such as Db connection strings are also stored in the vault.
+
+Developing for a secure cluster on Azure is facilitated by running the local Service Fabric cluster on SSL as well.  The Cluster Setup Repo contains all of the tools necessary.
 
 *LRP* is integrated with Azure Active Directory B2C which provides Sign-up, Sign-in, password update and other features.  When a user launches *LRP*, they are presented with an OAUTH compliant browser-based login window hosted on Azure itself.  If the do not already have an account, they can create one.  When a user first creates their account, they do not have full user privileges.  Once an admin has approved their account, they are upgraded to full access. 
 
