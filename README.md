@@ -20,7 +20,6 @@ A narrow but complete slice plays an important role in jump-starting an agile te
 
 Note that some sets of values necessary for this application, such as Azure keys and connection strings, need to be kept secret and are not commited to source control.
 
-
 ## In the Repo
 - <a href="https://github.com/triatta/cloud/tree/pullback19/Services">Microservices</a> 
 - <a href="https://github.com/triatta/cloud/tree/pullback19/ClusterSetup/ClusterSetup">Service Fabric Cluster Setup</a> 
@@ -301,9 +300,7 @@ public void Constructor()
 
 #### Interaction Unit Testing
 
-The ReadPageServiceBuildUrl's activity uses Moq-based interaction testing:
-
-For example:
+Tests for the ReadPageServiceBuildUrl are based on Moq:
 
 ```csharp
 [Test]
@@ -324,7 +321,7 @@ public async Task ReadPageAsync()
 
 #### State Unit Testing
 
-The ReadPageService collaborators provide examples of straightforward state testing.  For instance, here is a portion of the test file for the PageUrlBuilder:
+Tests for many of the ReadPageService collaborators are examples of state testing.  For instance, here is a portion of the test file for the PageUrlBuilder:
 
 ```csharp
 [[TestFixture]
