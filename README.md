@@ -217,8 +217,6 @@ namespace QTB3.Api.LabResultPatterns.UnitsOfMeasure
 }
 ````
 
-Web API dependency injection supplies instances of the controller's constructor parameters at runtime.
-
 The ReadController<> requires an instance of IPageLinkBuilder. The PageLinkBuilder is responsible for creating the Link header returned with every page request. *LRP* uses the same approach to pagination as the <a href="https://developer.github.com/v3/guides/traversing-with-pagination/">GitHub API</a>, namely supplying a Link header in a collection read response with *self, next, prev, first* and *last* link relations as appropriate.  When browsing collections, even on mobile clients, *LRP* does not support infinite scrolling.  *LRP* does support some scrolling, but encourages the browsing user to filter with the SeearchBar at the top of every list collection view for more efficient searching.
 
 As deployed on Azure Service Fabric, these endpoints sit behind an Azure Load Balancer and are addressed and accessed through the Service Fabric Reverse Proxy.  There is a ReverseProxy instance on every node, and each ReverseProxy has access to every service on every node to facilitate failover.
