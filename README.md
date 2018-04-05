@@ -200,17 +200,19 @@ The *LRP* domain divides its microservices into Read and Write channels that fac
 The UML class diagram above shows that the common read controller in *LRP* has a generic parameter to specify the Entity type for this controller, as does its IReadRepository constructor parameter.  The ReadController is responsible for Page and Item requests. The ReadRepository is responsible for reading pages or items from the persistent store.  The actual controllers deployed in the running application inherit from the common controllers, supply an Entity parameter, and annotate for authorization, as shown here:
 
 ```csharp
-[Authorize(Policy = "Scope")]
-[Authorize(Policy = "User")]
-public class UomReadController : ReadController<Uom>
+namespace QTB3.Api.LabResultPatterns.UnitsOfMeasure
 {
-    public UomReadController
-    (
-        IReadRepository<Uom> repository,
-        ISupportedMedia outputFormatter,
-        IPageLinksBuilder pagedResponseBuilder
-    ) : base(repository, outputFormatter, pagedResponseBuilder)
+    [Authorize(Policy = "Scope")]
+    [Authorize(Policy = "User")]
+    public class UomReadController : ReadController<Uom>
     {
+        public UomReadController
+        (
+            IReadRepository<Uom> repository,
+            IPageLinksBuilder pageLinksBuilder
+        ) : base(repository, pageLinksBuilder)
+        {
+        }
     }
 }
 ````
