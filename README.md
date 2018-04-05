@@ -1,6 +1,6 @@
 # Lab Result Patterns Manager
 
-The Lab Results Pattern manager (*LRP* pronounced *Lerp*) is a new application that allows medical clinicians to capture and maintain a library of lab result patterns. It is one component in a larger suite of <a href="https://en.wikipedia.org/wiki/Clinical_pathway">Clinical Pathway Management</a> automation softwware. 
+The Lab Results Pattern manager (*LRP* pronounced *Lerp*) is a new application that allows medical clinicians to capture and maintain a library of lab result patterns. It is one component in a larger suite of <a href="https://en.wikipedia.org/wiki/Clinical_pathway">Clinical Pathway Management</a> automation software. 
 
 The version of *LRP* in this public repo is a complete vertical slice of the application, including
 
