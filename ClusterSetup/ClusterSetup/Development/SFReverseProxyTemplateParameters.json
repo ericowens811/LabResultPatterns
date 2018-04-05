@@ -1,0 +1,90 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+  "parameters": {
+    "clusterName": {
+      "value": "yourClusterName"
+    },
+    "clusterLocation": {
+      "value": "yourAzureRegion"
+    },
+    "computeLocation": {
+      "value": "yourAzureRegion"
+    },
+    "adminUserName": {
+      "value": "yourUserName"
+    },
+    "adminPassword": {
+      "value": "yourPasswordName"
+    },
+    "nicName": {
+      "value": "NIC-yourClusterName"
+    },
+    "publicIPAddressName": {
+      "value": "yourClusterName-PubIP"
+    },
+    "dnsName": {
+      "value": "yourClusterName"
+    },
+    "virtualNetworkName": {
+      "value": "VNet-yourClusterName"
+    },
+    "lbName": {
+      "value": "LB-yourClusterName"
+    },
+    "lbIPName": {
+      "value": "LBIP-yourClusterName"
+    },
+    "applicationDiagnosticsStorageAccountName": {
+      "value": "sfdgyourClusterName1084"
+    },
+    "applicationInsightsKey": {
+      "value": "yourKey"
+    },
+    "supportLogStorageAccountName": {
+      "value": "sflogsyourClusterNamer5900"
+    },
+    "sourceVaultValue": {
+      "value": "yourVaultUrl"
+    },
+    "certificateUrlValue": {
+      "value": "yourCertificateUrl"
+    },
+    "certificateThumbprint": {
+      "value": "yourThumb"
+    },
+    "reverseProxyCertificateThumbprint": {
+      "value": "yourThumb"
+    },
+    "reverseProxyCertificateUrlValue": {
+      "value": "yourCertificateUrl"
+    },
+    "vmImageSku": {
+      "value": "2016-Datacenter-with-Containers"
+    },
+    "vmImageOffer": {
+      "value": "WindowsServer"
+    },
+    "nt0ephemeralStartPort": {
+      "value": 49152
+    },
+    "nt0ephemeralEndPort": {
+      "value": 65534
+    },
+    "nt0applicationStartPort": {
+      "value": 20000
+    },
+    "nt0applicationEndPort": {
+      "value": 30000
+    },
+    "nt0fabricTcpGatewayPort": {
+      "value": 19000
+    },
+    "nt0fabricHttpGatewayPort": {
+      "value": 19080
+    },
+    "nt0reverseProxyEndpointPort": {
+      "value": 19081
+    }
+  }
+}

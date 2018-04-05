@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ItemPage 
+    x:TypeArguments="unitsOfMeasure:Uom" 
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:QTB3.Client.LabResultPatterns.Common.Views;assembly=QTB3.Client.LabResultPatterns.Common"
+    xmlns:unitsOfMeasure="clr-namespace:QTB3.Model.LabResultPatterns.UnitsOfMeasure;assembly=QTB3.Model.LabResultPatterns"
+    x:Class="QTB3.Client.LabResultPatterns.Common.UomComponents.UomItemPage"
+    Title="{Binding Title}"
+>
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="Name" FontSize="Medium" />
+            <Entry x:Name="ItemNameEntry" Text="{Binding Name}" FontSize="Small" />
+            <Label Text="{Binding NameErrors}" IsVisible="{Binding HasNameErrors}" TextColor="Red"/>
+            <Label Text="Description" FontSize="Medium" />
+            <Entry x:Name="ItemDescriptionEntry" Text="{Binding Description}" FontSize="Small" />
+            <Label Text="{Binding DescriptionErrors}" IsVisible="{Binding HasDescriptionErrors}" TextColor="Red"/>
+        </StackLayout>
+    </ContentPage.Content>
+</views:ItemPage>
+    

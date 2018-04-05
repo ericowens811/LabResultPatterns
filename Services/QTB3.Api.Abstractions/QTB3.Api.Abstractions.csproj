@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.0-preview1-final" />
+    <PackageReference Include="System.IO.FileSystem.AccessControl" Version="4.5.0-preview1-26216-02" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QTB3.Model.Abstractions\QTB3.Model.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

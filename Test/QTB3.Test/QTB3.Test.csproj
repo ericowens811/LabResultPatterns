@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <NoWarn>1701;1702;1705;1998;</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="appsettings.json" CopyToOutputDirectory="Always" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.2" />
+    <PackageReference Include="Autofac.Extras.Moq" Version="4.2.0" />
+    <PackageReference Include="ErikEJ.EntityFrameworkCore.DgmlBuilder" Version="1.0.7" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.7.0-preview-20180320-02" />
+    <PackageReference Include="Moq" Version="4.8.2" />
+    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="SmartFormat.NET" Version="2.2.0" />
+    <PackageReference Include="Xamarin.Forms.Mocks" Version="2.5.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Clients\QTB3.Client.Abstractions\QTB3.Client.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Clients\QTB3.Client.LabResultPatterns.Abstractions\QTB3.Client.LabResultPatterns.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Clients\QTB3.Client.LabResultPatterns.Common\QTB3.Client.LabResultPatterns.Common.csproj" />
+    <ProjectReference Include="..\..\Services\QTB3.Api.Abstractions\QTB3.Api.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Services\QTB3.Api.Common\QTB3.Api.Common.csproj" />
+    <ProjectReference Include="..\..\Services\QTB3.Api.LabResultPatterns.Abstractions\QTB3.Api.LabResultPatterns.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Services\QTB3.Api.LabResultPatterns\QTB3.Api.LabResultPatterns.csproj" />
+    <ProjectReference Include="..\..\Services\QTB3.Model.Abstractions\QTB3.Model.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Services\QTB3.Model.LabResultPatterns\QTB3.Model.LabResultPatterns.csproj" />
+    <ProjectReference Include="..\QTB3.Test.LabResultPatterns.Support\QTB3.Test.LabResultPatterns.Support.csproj" />
+    <ProjectReference Include="..\QTB3.Test.Support\QTB3.Test.Support.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Client.LabResultPatterns.Common\ViewModels\" />
+    <Folder Include="WorkflowTests\" />
+  </ItemGroup>
+
+
+</Project>

@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <RuntimeIdentifier>win7-x64</RuntimeIdentifier>
+    <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
+    <ApplicationInsightsResourceId>/subscriptions/3bdd5464-2d14-472f-a29c-b94a0729ec9a/resourcegroups/CogitoAppInsightsRG/providers/microsoft.insights/components/CogitoAppInsights</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/3bdd5464-2d14-472f-a29c-b94a0729ec9a/resourcegroups/CogitoAppInsightsRG/providers/microsoft.insights/components/CogitoAppInsights</ApplicationInsightsAnnotationResourceId>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.2.1" />
+    <PackageReference Include="Microsoft.ApplicationInsights.ServiceFabric.Native" Version="2.1.0-beta1" />
+    <PackageReference Include="Microsoft.AspNet.WebUtilities" Version="1.0.0-rc1-final" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.1.0-preview1-final" />
+    <PackageReference Include="Microsoft.ServiceFabric" Version="6.1.467" />
+    <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.HttpSys" Version="3.0.467" />
+    <PackageReference Include="Microsoft.ServiceFabric.Data" Version="3.0.467" />
+    <PackageReference Include="Microsoft.ServiceFabric.Services" Version="3.0.467" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\QTB3.Api.LabResultPatterns\QTB3.Api.LabResultPatterns.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Hosting">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.aspnetcore.hosting\2.0.1\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Hosting.Abstractions">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.aspnetcore.hosting.abstractions\2.0.1\lib\netstandard2.0\Microsoft.AspNetCore.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceFabric.AspNetCore">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.servicefabric.aspnetcore.abstractions\2.8.232\lib\net452\Microsoft.ServiceFabric.AspNetCore.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceFabric.AspNetCore.HttpSys">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.servicefabric.aspnetcore.httpsys\2.8.232\lib\net452\Microsoft.ServiceFabric.AspNetCore.HttpSys.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ServiceFabric.Services">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.servicefabric.services\2.8.232\lib\net45\Microsoft.ServiceFabric.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Fabric">
+      <HintPath>..\..\..\..\..\.nuget\packages\microsoft.servicefabric\6.0.232\lib\net45\System.Fabric.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+
+</Project>

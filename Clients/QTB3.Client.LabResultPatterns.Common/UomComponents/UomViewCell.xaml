@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Name="ViewCell"
+    x:Class="QTB3.Client.LabResultPatterns.Common.UomComponents.UomViewCell">
+  <ViewCell.View>
+      <StackLayout Padding="10" Orientation="Horizontal">
+          <StackLayout Padding="0" Orientation="Vertical" HorizontalOptions="StartAndExpand">
+              <Label 
+                  x:Name="ItemNameLabel"
+                  Text="{Binding Name}" 
+                  LineBreakMode="NoWrap" 
+                  Style="{DynamicResource ListItemTextStyle}" 
+                  FontSize="16" 
+                  HorizontalOptions="StartAndExpand"
+              />
+              <Label 
+                  x:Name="ItemDescriptionLabel"
+                  Text="{Binding Description}" 
+                  LineBreakMode="NoWrap"
+                  Style="{DynamicResource ListItemDetailTextStyle}"
+                  FontSize="13" />
+          </StackLayout>
+          <Image
+              x:Name="ItemDeleteIcon"
+              Source="material-minus-12.png"
+              VerticalOptions="Center"
+              IsVisible="{Binding PageView.IsDeleting, Source={x:Reference ViewCell}}"
+          />
+            <Image 
+              x:Name="ItemEditIcon"
+              Source="material-pen-12.png"
+              VerticalOptions="Center"
+              IsVisible="{Binding PageView.IsEditing, Source={x:Reference ViewCell}}" 
+          />
+        </StackLayout>
+    </ViewCell.View>
+</ViewCell>

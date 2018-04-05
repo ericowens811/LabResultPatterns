@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IO.FileSystem.AccessControl" Version="4.5.0-preview1-26216-02" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.340284-pre2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\QTB3.Model.Abstractions\QTB3.Model.Abstractions.csproj" />
+    <ProjectReference Include="..\QTB3.Client.Abstractions\QTB3.Client.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

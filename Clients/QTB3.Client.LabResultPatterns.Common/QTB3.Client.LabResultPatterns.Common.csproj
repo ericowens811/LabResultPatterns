@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <NoWarn>1701;1702;1705;1998;NU1203;</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <NoWarn>1701;1702;1705;1998;</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.6.2" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="1.1.2-preview0008" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="System.Collections.Immutable" Version="1.5.0-preview1-26216-02" />
+    <PackageReference Include="System.IO.FileSystem.AccessControl" Version="4.5.0-preview1-26216-02" />
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.340284-pre2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\QTB3.Api.LabResultPatterns.Abstractions\QTB3.Api.LabResultPatterns.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Services\QTB3.Model.LabResultPatterns\QTB3.Model.LabResultPatterns.csproj" />
+    <ProjectReference Include="..\..\Services\QTB3.Model.Abstractions\QTB3.Model.Abstractions.csproj" />
+    <ProjectReference Include="..\QTB3.Client.Abstractions\QTB3.Client.Abstractions.csproj" />
+    <ProjectReference Include="..\QTB3.Client.Common\QTB3.Client.Common.csproj" />
+    <ProjectReference Include="..\QTB3.Client.LabResultPatterns.Abstractions\QTB3.Client.LabResultPatterns.Abstractions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="MainPageComponents\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="PagingComponents\Pagebar.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UomComponents\UomViewCell.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

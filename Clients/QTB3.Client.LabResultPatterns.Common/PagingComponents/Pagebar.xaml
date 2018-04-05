@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#2196F3"
+             HeightRequest="65"           
+             x:Class="QTB3.Client.LabResultPatterns.Common.PagingComponents.Pagebar">
+    <ContentView.Content>
+        <StackLayout Padding="0" Orientation="Horizontal" Spacing="0">
+            <ContentView WidthRequest="10"/>
+            <Image 
+                x:Name="PBack"
+                Source="fa-nav-lefty.png"               
+                HeightRequest="25"
+                VerticalOptions="Center"
+                IsVisible="False">
+            </Image>
+            <Image 
+                x:Name="PBackDisabled"
+                Source="fa-nav-lefty-disabled.png"               
+                HeightRequest="25"
+                VerticalOptions="Center"
+                IsVisible="False">
+            </Image>
+            <Label
+                x:Name="PLabel"
+                LineBreakMode="NoWrap"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="Center"
+                Text="1-50 of 250"
+                TextColor="#FFFFFF"
+                FontSize="20"
+                />
+            <Image 
+                x:Name="PForwardDisabled"
+                Source="fa-nav-disabled.png"
+                HeightRequest="25"
+                VerticalOptions="Center"
+                IsVisible="False">
+            </Image>
+            <Image 
+                x:Name="PForward"
+                Source="fa-nav.png"
+                HeightRequest="25"
+                VerticalOptions="Center"
+                IsVisible="False">
+            </Image>
+            <ContentView WidthRequest="10"/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>
