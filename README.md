@@ -252,7 +252,7 @@ The user of the page can
 
 Here are the clases behind the page:
 
-<img src="ReadmeResources/ClientMvcArch.png" alt="ClientMvcArch" width="800"/>
+<img src="ReadmeResources/ClientMvcArch.png" alt="ClientMvcArch" width="1000"/>
 
 In the *LRP* client architecture, there is a controller and view model for every page.  The view model's data and control properties are bound to the view and drive its presentation.  The controller knows about both the page and the view model and mediates between them.  The controller listens for user interactions on the page (the domain-specific UserEvents shown in the UML above) and responds in one of two ways:
 
